@@ -6,8 +6,6 @@ module.exports = {
 
         const [count] = await connection('incidents').count();
 
-        console.log(count);
-        
         const incidents = await connection('incidents')
         .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
         .limit(5)
@@ -51,10 +49,6 @@ module.exports = {
         .where('id', id)
         .select('ong_id')
         .first();
-
-        console.log(incident.ong_id);
-
-        console.log(ong_id);
 
         // verifica se o id da ong (logada) é o mesmo da que criou o caso
         if(incident.ong_id !== ong_id) {
